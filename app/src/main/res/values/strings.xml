@@ -6,4 +6,13 @@
     <string name="app_name">Mis Lugares</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
+    <string name="sign">Sign</string>
+    <string name="register">Register</string>
+    <string name="signui">Sign with UI</string>
+    <string name="session_message">Iniciando sesion</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="mail">Correo electronico</string>
+    <string name="provider">Proveedor</string>
+    <string name="uuid">UUID</string>
+    <string name="password">Password</string>
 </resources>

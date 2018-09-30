@@ -30,4 +30,15 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.google.firebase:firebase-messaging:10.2.1'
+
+    implementation 'com.firebaseui:firebase-ui-auth:3.2.2'
+
+// Required only if Facebook login support is required
+    implementation('com.facebook.android:facebook-android-sdk:4.33.0')
+
+// Required only if Twitter login support is required
+    implementation("com.twitter.sdk.android:twitter-core:3.1.1@aar") { transitive = true }
 }
+
+apply plugin: 'com.google.gms.google-services'
