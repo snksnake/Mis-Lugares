@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "907923389165",
+    "firebase_url": "https://mis-lugares-firebase-35154.firebaseio.com",
+    "project_id": "mis-lugares-firebase-35154",
+    "storage_bucket": "mis-lugares-firebase-35154.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907923389165:android:21acfdcb4727eb36",
+        "android_client_info": {
+          "package_name": "com.example.mislugares"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "907923389165-rsjjhgv556dppn35cj8g2s8em8run2pu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mislugares",
+            "certificate_hash": "7da148de5ad9e2e95394c4f78ec46c6b2b19159c"
+          }
+        },
+        {
+          "client_id": "907923389165-pclruljmgt0nmcv43mg86tgfv49dlg08.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiKABTJbkim62ATul9gq7XTNQqFJlIhWo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "907923389165-pclruljmgt0nmcv43mg86tgfv49dlg08.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
