@@ -15,4 +15,7 @@
     <string name="provider">Proveedor</string>
     <string name="uuid">UUID</string>
     <string name="password">Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
