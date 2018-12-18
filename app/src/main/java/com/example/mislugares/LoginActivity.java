@@ -33,6 +33,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.Arrays;
 
+import static com.example.mislugares.Usuarios.guardarUsuario;
+
 public class LoginActivity extends Activity {
 
     Button btnSign, btnRegister, btnSignUi;
@@ -82,8 +84,10 @@ public class LoginActivity extends Activity {
         try {
             FirebaseUser usuario = mAuth.getCurrentUser();
 
+
             if (usuario != null) {
                 Toast.makeText(this, getText(R.string.session_message), Toast.LENGTH_LONG).show();
+                guardarUsuario(usuario);
 
                 Uri photo = usuario.getPhotoUrl();
                 String mail = usuario.getEmail();
@@ -165,6 +169,7 @@ public class LoginActivity extends Activity {
     private void verificarSiUsuarioRegistrado() {
         FirebaseUser usuario = mAuth.getCurrentUser();
         if (!unificar && usuario != null) {
+            guardarUsuario(usuario);
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(
                     Intent.FLAG_ACTIVITY_CLEAR_TOP |

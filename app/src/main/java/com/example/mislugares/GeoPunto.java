@@ -3,6 +3,8 @@ package com.example.mislugares;
 public class GeoPunto {
     private double longitud, latitud;
 
+    public GeoPunto() {}
+
     public GeoPunto(double longitud, double latitud) {
         this.longitud = longitud;
         this.latitud = latitud;
@@ -40,4 +42,15 @@ public class GeoPunto {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return c * RADIO_TIERRA;
     }
+
+    /*
+    public String getTipo(){
+        if (tipo == null) return null;
+        else return tipo.name();
+        }
+    public void setTipo(String nombre){
+        if (nombre == null) tipo = null;
+        else tipo = TipoLugar.valueOf(nombre);
+    }
+    * */
 }
