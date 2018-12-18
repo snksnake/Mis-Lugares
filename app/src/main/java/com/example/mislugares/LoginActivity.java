@@ -1,5 +1,6 @@
 package com.example.mislugares;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +24,9 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.Arrays;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
-    Button btnSign, btnRegister, btnSignUi, tryregister;
+    Button btnSign, btnRegister, btnSignUi;
     EditText password, username;
     private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
@@ -44,12 +45,13 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         username = findViewById(R.id.username);
 
-        btnSign.setOnClickListener(new View.OnClickListener() {
+        verificarSiUsuarioRegistrado();
+        
+        btnSignUi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
-                //verificarSiUsuarioRegistrado();
-
+                //
             }
         });
     }
