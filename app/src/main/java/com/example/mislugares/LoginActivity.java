@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 startActivity(intent);
             } else {
-                startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(Arrays.asList(
+                startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setLogo(R.mipmap.ic_launcher) .setTheme(R.style.FirebaseUITema).setAvailableProviders(Arrays.asList(
                         new AuthUI.IdpConfig.Builder(EmailAuthProvider.PROVIDER_ID).build(),
                         new AuthUI.IdpConfig.Builder(PhoneAuthProvider.PROVIDER_ID).build(),
                         new AuthUI.IdpConfig.Builder(GoogleAuthProvider.PROVIDER_ID).build())).setIsSmartLockEnabled(false).build(), RC_SIGN_IN);

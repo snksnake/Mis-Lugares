@@ -1,15 +1,22 @@
 package com.example.mislugares;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.example.mislugares.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +55,25 @@ public class UsuarioFragment extends Fragment {
                 });
             }
         });
+
+        RequestQueue colaPeticiones = Volley.newRequestQueue(getActivity().getApplicationContext());
+        ImageLoader lectorImagenes = new ImageLoader(colaPeticiones, new ImageLoader.ImageCache() {
+            private final LruCache<String, Bitmap> cache = new LruCache<String, Bitmap>(10);
+
+            public void putBitmap(String url, Bitmap bitmap) {
+                cache.put(url, bitmap);
+            }
+
+            public Bitmap getBitmap(String url) {
+                return cache.get(url);
+            }
+        });
+
+        Uri urlImagen = usuario.getPhotoUrl();
+        if (urlImagen != null) {
+            NetworkImageView fotoUsuario = vista.findViewById(R.id.imagen);
+            fotoUsuario.setImageUrl(urlImagen.toString(), lectorImagenes);
+        }
 
         return vista;
     }
