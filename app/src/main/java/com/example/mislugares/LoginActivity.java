@@ -20,6 +20,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -37,9 +38,11 @@ public class LoginActivity extends Activity {
     Button btnSign, btnRegister, btnSignUi;
     EditText etPassword, etUsername;
     private static final int RC_SIGN_IN = 123;
+    private GoogleApiClient googleApiClient;
     private FirebaseAuth mAuth;
     private String correo, contraseña;
     private TextInputLayout tilCorreo, tilContraseña;
+    private boolean unificar;
 
     private ViewGroup contenedor;
     private ProgressDialog dialogo;
@@ -62,6 +65,8 @@ public class LoginActivity extends Activity {
         dialogo.setMessage("Por favor espere...");
         tilCorreo = (TextInputLayout) findViewById(R.id.til_correo);
         tilContraseña = (TextInputLayout) findViewById(R.id.til_contraseña);
+
+        unificar = getIntent().getBooleanExtra("unificar", false);
 
         verificarSiUsuarioRegistrado();
 
@@ -109,6 +114,31 @@ public class LoginActivity extends Activity {
         }
     }
 
+
+    public void reestablecerContrasena(View v) {
+        correo = etUsername.getText().toString();
+        tilCorreo.setError("");
+        if (correo.isEmpty()) {
+            tilCorreo.setError("Introduce un correo");
+        } else if (!correo.matches(".+@.+[.].+")) {
+            tilCorreo.setError("Correo no válido");
+        } else {
+            dialogo.show();
+            mAuth.sendPasswordResetEmail(correo)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            dialogo.dismiss();
+                            if (task.isSuccessful()) {
+                                mensaje("Verifica tu correo para cambiar contraseña.");
+                            } else {
+                                mensaje("ERROR al mandar correo para cambiar contraseña");
+                            }
+                        }
+                    });
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,7 +164,7 @@ public class LoginActivity extends Activity {
 
     private void verificarSiUsuarioRegistrado() {
         FirebaseUser usuario = mAuth.getCurrentUser();
-        if (usuario != null) {
+        if (!unificar && usuario != null) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(
                     Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -155,7 +185,6 @@ public class LoginActivity extends Activity {
             finish();
         }
     }
-
 
     public void inicioSesionCorreo(View v) {
         if (verificaCampos()) {
@@ -211,7 +240,7 @@ public class LoginActivity extends Activity {
     }
 
     private void mensaje(String mensaje) {
-        Snackbar.make(contenedor, mensaje, Snackbar.LENGTH_LONG).show();
+        //Snackbar.make(contenedor, mensaje, Snackbar.LENGTH_LONG).show();
     }
 
     private boolean verificaCampos() {

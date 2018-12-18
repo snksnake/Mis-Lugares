@@ -34,7 +34,7 @@ public class UsuarioFragment extends Fragment {
         TextView providers = vista.findViewById(R.id.providers);
         TextView phoneNumber = vista.findViewById(R.id.phone_number);
         TextView uid = vista.findViewById(R.id.uid);
-
+        Button unirCuenta = (Button) vista.findViewById(R.id.btn_unir_cuenta);
         nombre.setText(usuario.getDisplayName());
         email.setText(usuario.getEmail());
         providers.setText(usuario.getProviders().toString());
@@ -55,6 +55,17 @@ public class UsuarioFragment extends Fragment {
                         getActivity().finish();
                     }
                 });
+            }
+        });
+
+        unirCuenta.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(),CustomLoginActivity.class);
+                i.putExtra("unificar",true);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
             }
         });
 

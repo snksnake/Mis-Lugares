@@ -113,6 +113,17 @@
                 android:padding="8dp"
                 android:text="Cerrar sesión"
                 android:textColor="#fff" />
+
+            <Button
+                android:id="@+id/btn_unir_cuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:background="#d0021b"
+                android:padding="8dp"
+                android:text="Unificar con otra cuenta"
+                android:textColor="#fff" />
         </LinearLayout>
     </ScrollView>
 
