@@ -9,6 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+
+import adapters.AdaptadorLugaresFirebaseUI;
+
 /**
  * Created by Jesús Tomás on 19/04/2017.
  */
@@ -16,6 +22,7 @@ import android.view.ViewGroup;
 public class SelectorFragment extends Fragment {
     private RecyclerView recyclerView;
     public static AdaptadorLugaresBD adaptador;
+    public static AdaptadorLugaresFirebaseUI adaptador2;
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup contenedor,
                              Bundle savedInstanceState) {
@@ -44,5 +51,29 @@ public class SelectorFragment extends Fragment {
             }
         });
         recyclerView.setAdapter(adaptador);
+
+        Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("lugares")
+                .limitToLast(50);
+        FirebaseRecyclerOptions<Lugar> opciones = new FirebaseRecyclerOptions
+                .Builder<Lugar>().setQuery(query, Lugar.class).build();
+        adaptador2 = new AdaptadorLugaresFirebaseUI(opciones);
+        recyclerView.setAdapter(adaptador2);
+        adaptador2.startListening();
+    }
+
+    @Override public void onStart() {
+        super.onStart();
+        adaptador2.startListening();
+    }
+    @Override public void onStop() {
+        super.onStop();
+        adaptador2.stopListening();
+    }
+
+    @Override public void onDestroy() {
+        super.onDestroy();
+        adaptador2.stopListening();
     }
 }
