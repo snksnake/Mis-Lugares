@@ -9,9 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import adapters.AdaptadorLugaresFirebase;
 import adapters.AdaptadorLugaresFirebaseUI;
 
 /**
@@ -21,7 +23,8 @@ import adapters.AdaptadorLugaresFirebaseUI;
 public class SelectorFragment extends Fragment {
     private RecyclerView recyclerView;
     //public static AdaptadorLugaresBD adaptador;
-    public static AdaptadorLugaresFirebaseUI adaptador;
+    //public static AdaptadorLugaresFirebaseUI adaptador;
+    public static AdaptadorLugaresFirebase adaptador;
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup contenedor,
                              Bundle savedInstanceState) {
@@ -44,10 +47,11 @@ public class SelectorFragment extends Fragment {
                 .getReference()
                 .child("lugares")
                 .limitToLast(50);
-        
+
         FirebaseRecyclerOptions<Lugar> opciones = new FirebaseRecyclerOptions
                 .Builder<Lugar>().setQuery(query, Lugar.class).build();
-        adaptador = new AdaptadorLugaresFirebaseUI(opciones);
+        //adaptador = new AdaptadorLugaresFirebaseUI(opciones);
+        adaptador = new AdaptadorLugaresFirebase(getContext(), FirebaseDatabase.getInstance().getReference().getRef().getRef().child("lugares"));
         adaptador.setOnItemClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 ((MainActivity) getActivity()).muestraLugar(
