@@ -26,7 +26,8 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
-    public static LugaresBD lugares;
+    //public static LugaresBD lugares;
+    public static LugaresAsinc lugares;
     private LocationManager manejador;
     private Location mejorLocaliz;
     private static final int SOLICITUD_PERMISO_LOCALIZACION = 0;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lugares = new LugaresBD(this);
+        //lugares = new LugaresBD(this);
+        lugares = new LugaresFirebase();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fragmentVista = (VistaLugarFragment) getSupportFragmentManager()
@@ -46,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                long _id = lugares.nuevo();
+                //long _id = lugares.nuevo();
+                String _id = lugares.nuevo();
                 Intent i = new Intent(MainActivity.this, EdicionLugarActivity.class);
                 i.putExtra("_id", _id);
                 startActivity(i);
@@ -245,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onActivityResult(int requestCode, int resultCode,
                                     Intent data) {
         if (requestCode == RESULTADO_PREFERENCIAS) {
-            SelectorFragment.adaptador.setCursor(MainActivity.lugares.extraeCursor());
+            //SelectorFragment.adaptador.setCursor(MainActivity.lugares.extraeCursor());
             SelectorFragment.adaptador.notifyDataSetChanged();
         }
     }
