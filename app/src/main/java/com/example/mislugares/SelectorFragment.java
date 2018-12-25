@@ -1,6 +1,5 @@
 package com.example.mislugares;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,8 +20,8 @@ import adapters.AdaptadorLugaresFirebaseUI;
 
 public class SelectorFragment extends Fragment {
     private RecyclerView recyclerView;
-    public static AdaptadorLugaresBD adaptador;
-    public static AdaptadorLugaresFirebaseUI adaptador2;
+    //public static AdaptadorLugaresBD adaptador;
+    public static AdaptadorLugaresFirebaseUI adaptador;
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup contenedor,
                              Bundle savedInstanceState) {
@@ -38,8 +37,17 @@ public class SelectorFragment extends Fragment {
                 new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         layoutManager.setAutoMeasureEnabled(true); //Quitar si da problemas
-        adaptador = new AdaptadorLugaresBD(getContext(),
-                MainActivity.lugares,  MainActivity.lugares.extraeCursor());
+
+        //adaptador = new AdaptadorLugaresBD(getContext(),
+        //        MainActivity.lugares,  MainActivity.lugares.extraeCursor());
+        Query query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("lugares")
+                .limitToLast(50);
+        
+        FirebaseRecyclerOptions<Lugar> opciones = new FirebaseRecyclerOptions
+                .Builder<Lugar>().setQuery(query, Lugar.class).build();
+        adaptador = new AdaptadorLugaresFirebaseUI(opciones);
         adaptador.setOnItemClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 ((MainActivity) getActivity()).muestraLugar(
@@ -52,28 +60,20 @@ public class SelectorFragment extends Fragment {
         });
         recyclerView.setAdapter(adaptador);
 
-        Query query = FirebaseDatabase.getInstance()
-                .getReference()
-                .child("lugares")
-                .limitToLast(50);
-        FirebaseRecyclerOptions<Lugar> opciones = new FirebaseRecyclerOptions
-                .Builder<Lugar>().setQuery(query, Lugar.class).build();
-        adaptador2 = new AdaptadorLugaresFirebaseUI(opciones);
-        recyclerView.setAdapter(adaptador2);
-        adaptador2.startListening();
+        adaptador.startListening();
     }
 
     @Override public void onStart() {
         super.onStart();
-        adaptador2.startListening();
+        adaptador.startListening();
     }
     @Override public void onStop() {
         super.onStop();
-        adaptador2.stopListening();
+        adaptador.stopListening();
     }
 
     @Override public void onDestroy() {
         super.onDestroy();
-        adaptador2.stopListening();
+        adaptador.stopListening();
     }
 }
