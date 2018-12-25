@@ -24,6 +24,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
     //public static LugaresBD lugares;
@@ -39,11 +41,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //lugares = new LugaresBD(this);
-        lugares = new LugaresFirebase();
+        //lugares = new LugaresFirebase();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fragmentVista = (VistaLugarFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.vista_lugar_fragment);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        for (Lugar lugar : LugaresVector.ejemploLugares()) {
+            db.collection("lugares").add(lugar);
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
