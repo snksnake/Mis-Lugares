@@ -42,7 +42,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
         //lugares = new LugaresBD(this);
         //lugares = new LugaresFirebase();
-        lugares = new LugaresFirestore();
+
+        Preferencias pref = Preferencias.getInstance();
+        pref.inicializa(this);
+        if (pref.usarFirestore()) {
+            lugares = new LugaresFirestore();
+        } else {
+            lugares = new LugaresFirebase();
+        }
+
+        //lugares = new LugaresFirestore();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fragmentVista = (VistaLugarFragment) getSupportFragmentManager()

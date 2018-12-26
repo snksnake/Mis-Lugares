@@ -39,4 +39,12 @@ public class Preferencias {
     public int maximoMostrar() {
         return parseInt(pref.getString("maximo", "50"));
     }
+
+    public boolean usarFirestore() {
+        return (pref.getBoolean("firestore", true));
+    }
+
+    public boolean usarFirebaseUI() {
+        return (pref.getBoolean("firebaseUI", true));
+    }
 }

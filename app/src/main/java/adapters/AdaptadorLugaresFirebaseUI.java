@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mislugares.AdaptadorLugares;
+import com.example.mislugares.AdaptadorLugaresInterface;
 import com.example.mislugares.Lugar;
 import com.example.mislugares.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class AdaptadorLugaresFirebaseUI extends
-        FirebaseRecyclerAdapter<Lugar, AdaptadorLugares.ViewHolder> {
+        FirebaseRecyclerAdapter<Lugar, AdaptadorLugares.ViewHolder> implements AdaptadorLugaresInterface {
     protected View.OnClickListener onClickListener;
     public AdaptadorLugaresFirebaseUI(
             @NonNull FirebaseRecyclerOptions<Lugar> opciones) {

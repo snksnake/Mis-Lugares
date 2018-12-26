@@ -11,4 +11,16 @@ public class PreferenciasActivity extends AppCompatActivity {
                 .replace(android.R.id.content, new PreferenciasFragment())
                 .commit();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Preferencias pref = Preferencias.getInstance();
+        if (pref.usarFirestore()) {
+            MainActivity.lugares = new LugaresFirestore();
+        } else {
+            MainActivity.lugares = new LugaresFirebase();
+        }
+        SelectorFragment.ponerAdaptador();
+    }
 }

@@ -126,7 +126,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
         //lugar = MainActivity.lugares.elemento((int) id);
         //lugar = SelectorFragment.adaptador.lugarPosicion((int) id);
         this.id = id;
-        lugar = SelectorFragment.adaptador3.getItem((int) id);
+        lugar = SelectorFragment.getAdaptador().getItem((int) id);
         if (lugar != null) {
 
             TextView nombre = (TextView) v.findViewById(R.id.nombre);
@@ -236,7 +236,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //MainActivity.lugares.borrar(id);
-                        String _id = SelectorFragment.adaptador3.getKey(id);
+                        String _id = SelectorFragment.getAdaptador().getKey(id);
                         MainActivity.lugares.borrar(_id);
                         //SelectorFragment.adaptador.setCursor(
                         //        MainActivity.lugares.extraeCursor());
@@ -414,7 +414,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
         //SelectorFragment.adaptador.setCursor(MainActivity.lugares.extraeCursor());
 //        SelectorFragment.adaptador.notifyItemChanged((int) id);
         //SelectorFragment.adaptador.notifyDataSetChanged();
-        String _id = SelectorFragment.adaptador3.getKey((int) id);
+        String _id = SelectorFragment.getAdaptador().getKey((int) id);
         MainActivity.lugares.actualiza(_id, lugar);
     }
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mislugares.AdaptadorLugares;
+import com.example.mislugares.AdaptadorLugaresInterface;
 import com.example.mislugares.Lugar;
 import com.example.mislugares.R;
 import com.google.firebase.database.ChildEventListener;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 
 import static com.example.mislugares.AdaptadorLugares.personalizaVista;
 
-public class AdaptadorLugaresFirebase extends RecyclerView.Adapter<AdaptadorLugares.ViewHolder> implements ChildEventListener {
+public class AdaptadorLugaresFirebase extends RecyclerView.Adapter<AdaptadorLugares.ViewHolder> implements ChildEventListener, AdaptadorLugaresInterface {
     private DatabaseReference reference;
     private ArrayList<String> keys;
     private ArrayList<DataSnapshot> items;

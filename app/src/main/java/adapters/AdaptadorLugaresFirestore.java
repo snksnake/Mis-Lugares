@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mislugares.AdaptadorLugares;
+import com.example.mislugares.AdaptadorLugaresInterface;
 import com.example.mislugares.Lugar;
 import com.example.mislugares.R;
 import com.google.firebase.firestore.DocumentChange;
@@ -25,7 +26,7 @@ import static com.example.mislugares.AdaptadorLugares.personalizaVista;
 import static java.lang.Math.min;
 import static java.lang.StrictMath.abs;
 
-public class AdaptadorLugaresFirestore extends RecyclerView.Adapter<AdaptadorLugares.ViewHolder> implements EventListener<QuerySnapshot> {
+public class AdaptadorLugaresFirestore extends RecyclerView.Adapter<AdaptadorLugares.ViewHolder> implements EventListener<QuerySnapshot>, AdaptadorLugaresInterface {
     public static final String TAG = "Mislugares";
     private Query query;
     private List<DocumentSnapshot> items;
