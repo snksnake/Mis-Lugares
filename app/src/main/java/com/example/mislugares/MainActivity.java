@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_main);
         //lugares = new LugaresBD(this);
         //lugares = new LugaresFirebase();
+        lugares = new LugaresFirestore();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fragmentVista = (VistaLugarFragment) getSupportFragmentManager()
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         for (Lugar lugar : LugaresVector.ejemploLugares()) {
-            db.collection("lugares").add(lugar);
+            //db.collection("lugares").add(lugar);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 ultimaLocalizazion();
                 activarProveedores();
                 //adaptador.notifyDataSetChanged();
-                SelectorFragment.adaptador.notifyDataSetChanged();
+                SelectorFragment.adaptador3.notifyDataSetChanged();
             }
         }
     }
@@ -175,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     protected void onResume() {
         super.onResume();
         activarProveedores();
-        if (fragmentVista != null && SelectorFragment.adaptador.getItemCount() > 0) {
+        if (fragmentVista != null && SelectorFragment.adaptador3.getItemCount() > 0) {
             fragmentVista.actualizarVistas(0);
         }
     }
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Log.d(Lugares.TAG, "Nueva localización: " + location);
         actualizaMejorLocaliz(location);
         //adaptador.notifyDataSetChanged();
-        SelectorFragment.adaptador.notifyDataSetChanged();
+        SelectorFragment.adaptador3.notifyDataSetChanged();
     }
 
     @Override
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     Intent data) {
         if (requestCode == RESULTADO_PREFERENCIAS) {
             //SelectorFragment.adaptador.setCursor(MainActivity.lugares.extraeCursor());
-            SelectorFragment.adaptador.notifyDataSetChanged();
+            SelectorFragment.adaptador3.notifyDataSetChanged();
         }
     }
 }

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.Query;
 
 import adapters.AdaptadorLugaresFirebase;
 import adapters.AdaptadorLugaresFirebaseUI;
+import adapters.AdaptadorLugaresFirestore;
 import adapters.AdaptadorLugaresFirestoreUI;
 
 /**
@@ -27,8 +28,9 @@ public class SelectorFragment extends Fragment {
     private RecyclerView recyclerView;
     //public static AdaptadorLugaresBD adaptador;
     //public static AdaptadorLugaresFirebaseUI adaptador;
-    public static AdaptadorLugaresFirebase adaptador;
+    //public static AdaptadorLugaresFirebase adaptador;
     public static AdaptadorLugaresFirestoreUI adaptador2;
+    public static AdaptadorLugaresFirestore adaptador3;
 
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup contenedor,
@@ -57,45 +59,61 @@ public class SelectorFragment extends Fragment {
         //FirebaseRecyclerOptions<Lugar> opciones = new FirebaseRecyclerOptions
         //        .Builder<Lugar>().setQuery(query, Lugar.class).build();
         //adaptador = new AdaptadorLugaresFirebaseUI(opciones);
-        adaptador = new AdaptadorLugaresFirebase(getContext(), FirebaseDatabase.getInstance().getReference().getRef().getRef().child("lugares"));
-        adaptador.setOnItemClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainActivity) getActivity()).muestraLugar(
-                        recyclerView.getChildAdapterPosition(v));
+        //adaptador = new AdaptadorLugaresFirebase(getContext(), FirebaseDatabase.getInstance().getReference().getRef().getRef().child("lugares"));
+
+        //adaptador.setOnItemClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        ((MainActivity) getActivity()).muestraLugar(
+        //                recyclerView.getChildAdapterPosition(v));
                 /*Intent i = new Intent(getContext(), VistaLugarActivity.class);
                 i.putExtra("id", (long)
                         recyclerView.getChildAdapterPosition(v));
                 startActivity(i);*/
-            }
-        });
+         //   }
+        //});
 
         Query query = FirebaseFirestore.getInstance().collection("lugares").limit(50);
         FirestoreRecyclerOptions<Lugar> opciones = new FirestoreRecyclerOptions.Builder<Lugar>().setQuery(query, Lugar.class).build();
-        adaptador2 = new AdaptadorLugaresFirestoreUI(opciones);
-        recyclerView.setAdapter(adaptador2);
+        //adaptador2 = new AdaptadorLugaresFirestoreUI(opciones);
+        adaptador3 = new AdaptadorLugaresFirestore(getContext(), FirebaseFirestore.getInstance().collection("lugares"));
+        //recyclerView.setAdapter(adaptador2);
+        adaptador3.setOnItemClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity) getActivity()).muestraLugar(
+                            recyclerView.getChildAdapterPosition(v));
+                /*Intent i = new Intent(getContext(), VistaLugarActivity.class);
+                i.putExtra("id", (long)
+                        recyclerView.getChildAdapterPosition(v));
+                startActivity(i);*/
+               }
+            });
+
+        recyclerView.setAdapter(adaptador3);
 
         //recyclerView.setAdapter(adaptador);
 
-        adaptador2.startListening();
+        adaptador3.startListening();
+        //adaptador2.startListening();
         //adaptador.startListening();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        adaptador.startListening();
+        adaptador3.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        adaptador.stopListening();
+        adaptador3.stopListening();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        adaptador.stopListening();
+        adaptador3.stopListening();
     }
 }
