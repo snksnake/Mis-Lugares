@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 
+import com.example.mislugares.entidades.GeoPunto;
+import com.example.mislugares.entidades.Lugar;
+import com.example.mislugares.fragments.SelectorFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

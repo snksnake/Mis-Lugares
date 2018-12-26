@@ -1,4 +1,4 @@
-package com.example.mislugares;
+package com.example.mislugares.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +17,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.Volley;
+import com.example.mislugares.CustomLoginActivity;
+import com.example.mislugares.LoginActivity;
 import com.example.mislugares.R;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;

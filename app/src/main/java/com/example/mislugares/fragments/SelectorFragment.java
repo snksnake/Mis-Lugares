@@ -1,4 +1,4 @@
-package com.example.mislugares;
+package com.example.mislugares.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,18 +9,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mislugares.MainActivity;
+import com.example.mislugares.Preferencias;
+import com.example.mislugares.R;
+import com.example.mislugares.entidades.Lugar;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
-import adapters.AdaptadorLugaresFirebase;
-import adapters.AdaptadorLugaresFirebaseUI;
-import adapters.AdaptadorLugaresFirestore;
-import adapters.AdaptadorLugaresFirestoreUI;
+import com.example.mislugares.adapters.AdaptadorLugaresFirebase;
+import com.example.mislugares.adapters.AdaptadorLugaresFirebaseUI;
+import com.example.mislugares.adapters.AdaptadorLugaresFirestore;
+import com.example.mislugares.adapters.AdaptadorLugaresFirestoreUI;
+import com.example.mislugares.interfaces.AdaptadorLugaresInterface;
 
 import static com.example.mislugares.Preferencias.SELECCION_MIOS;
 import static com.example.mislugares.Preferencias.SELECCION_TIPO;
@@ -34,7 +37,7 @@ public class SelectorFragment extends Fragment {
     //public static AdaptadorLugaresBD adaptador;
     //public static AdaptadorLugaresFirebaseUI adaptador;
     //public static AdaptadorLugaresFirebase adaptador;
-    public static AdaptadorLugaresFirestoreUI adaptador2;
+    //public static AdaptadorLugaresFirestoreUI adaptador2;
     //public static AdaptadorLugaresFirestore adaptador3;
     public static Context context;
     public static RecyclerView.Adapter adaptador3;

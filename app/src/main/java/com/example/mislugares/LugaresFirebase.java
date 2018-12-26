@@ -2,11 +2,14 @@ package com.example.mislugares;
 
 import android.util.Log;
 
+import com.example.mislugares.entidades.Lugar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import com.example.mislugares.interfaces.LugaresAsinc;
 
 public class LugaresFirebase implements LugaresAsinc {
     private final static String NODO_LUGARES = "lugares";

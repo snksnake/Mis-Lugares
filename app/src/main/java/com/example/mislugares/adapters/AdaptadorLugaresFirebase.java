@@ -1,4 +1,4 @@
-package adapters;
+package com.example.mislugares.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mislugares.AdaptadorLugares;
-import com.example.mislugares.AdaptadorLugaresInterface;
-import com.example.mislugares.Lugar;
+import com.example.mislugares.interfaces.AdaptadorLugaresInterface;
+import com.example.mislugares.entidades.Lugar;
 import com.example.mislugares.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-import static com.example.mislugares.AdaptadorLugares.personalizaVista;
+import static com.example.mislugares.adapters.AdaptadorLugares.personalizaVista;
 
 public class AdaptadorLugaresFirebase extends RecyclerView.Adapter<AdaptadorLugares.ViewHolder> implements ChildEventListener, AdaptadorLugaresInterface {
     private DatabaseReference reference;

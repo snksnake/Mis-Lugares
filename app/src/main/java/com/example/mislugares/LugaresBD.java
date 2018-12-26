@@ -7,7 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.preference.PreferenceManager;
 
-public class LugaresBD extends SQLiteOpenHelper implements Lugares  {
+import com.example.mislugares.entidades.GeoPunto;
+import com.example.mislugares.entidades.Lugar;
+import com.example.mislugares.interfaces.Lugares;
+
+public class LugaresBD extends SQLiteOpenHelper implements Lugares {
 
     Context contexto;
 

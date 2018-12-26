@@ -1,13 +1,12 @@
-package adapters;
+package com.example.mislugares.adapters;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.mislugares.AdaptadorLugares;
-import com.example.mislugares.AdaptadorLugaresInterface;
-import com.example.mislugares.Lugar;
+import com.example.mislugares.interfaces.AdaptadorLugaresInterface;
+import com.example.mislugares.entidades.Lugar;
 import com.example.mislugares.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

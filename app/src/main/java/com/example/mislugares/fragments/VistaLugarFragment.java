@@ -1,4 +1,4 @@
-package com.example.mislugares;
+package com.example.mislugares.fragments;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,13 +10,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -35,6 +33,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.mislugares.dialogos.DialogoSelectorFecha;
+import com.example.mislugares.dialogos.DialogoSelectorHora;
+import com.example.mislugares.EdicionLugarActivity;
+import com.example.mislugares.MainActivity;
+import com.example.mislugares.PermisosUtilidades;
+import com.example.mislugares.R;
+import com.example.mislugares.entidades.Lugar;
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -42,6 +49,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static com.example.mislugares.fragments.SelectorFragment.getAdaptador;
+import static com.example.mislugares.ValoracionesFirestore.guardarValoracion;
 
 public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
     private long id;
@@ -126,7 +136,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
         //lugar = MainActivity.lugares.elemento((int) id);
         //lugar = SelectorFragment.adaptador.lugarPosicion((int) id);
         this.id = id;
-        lugar = SelectorFragment.getAdaptador().getItem((int) id);
+        lugar = getAdaptador().getItem((int) id);
         if (lugar != null) {
 
             TextView nombre = (TextView) v.findViewById(R.id.nombre);
@@ -174,8 +184,11 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
                         @Override
                         public void onRatingChanged(RatingBar ratingBar,
                                                     float valor, boolean fromUser) {
-                            lugar.setValoracion(valor);
-                            actualizaLugar();
+                            String _id = getAdaptador().getKey((int) id);
+                            String usuario = FirebaseAuth.getInstance().getUid();
+                            guardarValoracion(_id, usuario, ((double) valor));
+                            //lugar.setValoracion(valor);
+                            //actualizaLugar();
                         }
                     });
             ponerFoto((ImageView) v.findViewById(R.id.foto), lugar.getFoto());
@@ -236,7 +249,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //MainActivity.lugares.borrar(id);
-                        String _id = SelectorFragment.getAdaptador().getKey(id);
+                        String _id = getAdaptador().getKey(id);
                         MainActivity.lugares.borrar(_id);
                         //SelectorFragment.adaptador.setCursor(
                         //        MainActivity.lugares.extraeCursor());
@@ -414,7 +427,7 @@ public class VistaLugarFragment extends Fragment implements TimePickerDialog.OnT
         //SelectorFragment.adaptador.setCursor(MainActivity.lugares.extraeCursor());
 //        SelectorFragment.adaptador.notifyItemChanged((int) id);
         //SelectorFragment.adaptador.notifyDataSetChanged();
-        String _id = SelectorFragment.getAdaptador().getKey((int) id);
+        String _id = getAdaptador().getKey((int) id);
         MainActivity.lugares.actualiza(_id, lugar);
     }
 

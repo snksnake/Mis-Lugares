@@ -1,4 +1,7 @@
-package com.example.mislugares;
+package com.example.mislugares.interfaces;
+
+import com.example.mislugares.entidades.GeoPunto;
+import com.example.mislugares.entidades.Lugar;
 
 public interface Lugares {
     final static String TAG = "MisLugares";

@@ -4,16 +4,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.util.Date;
+import com.example.mislugares.entidades.Lugar;
+import com.example.mislugares.fragments.SelectorFragment;
 
 public class EdicionLugarActivity extends AppCompatActivity {
     private long id;

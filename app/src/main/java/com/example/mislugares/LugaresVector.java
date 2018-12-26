@@ -3,6 +3,9 @@ package com.example.mislugares;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.mislugares.entidades.Lugar;
+import com.example.mislugares.interfaces.Lugares;
+
 public class LugaresVector implements Lugares {
     protected List<Lugar> vectorLugares = ejemploLugares();
 

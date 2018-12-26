@@ -1,7 +1,7 @@
 package com.example.mislugares;
 
+import com.example.mislugares.entidades.Usuario;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Usuarios {

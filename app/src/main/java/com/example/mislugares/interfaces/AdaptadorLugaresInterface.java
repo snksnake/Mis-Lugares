@@ -1,6 +1,8 @@
-package com.example.mislugares;
+package com.example.mislugares.interfaces;
 
 import android.view.View;
+
+import com.example.mislugares.entidades.Lugar;
 
 public interface AdaptadorLugaresInterface {
     public String getKey(int pos);

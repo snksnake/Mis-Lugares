@@ -1,4 +1,4 @@
-package com.example.mislugares;
+package com.example.mislugares.entidades;
 
 public class Usuario {
     private String nombre;

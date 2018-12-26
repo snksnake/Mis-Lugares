@@ -3,6 +3,9 @@ package com.example.mislugares;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.mislugares.fragments.PreferenciasFragment;
+import com.example.mislugares.fragments.SelectorFragment;
+
 public class PreferenciasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

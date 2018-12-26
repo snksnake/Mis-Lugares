@@ -1,4 +1,6 @@
-package com.example.mislugares;
+package com.example.mislugares.interfaces;
+
+import com.example.mislugares.entidades.Lugar;
 
 public interface LugaresAsinc {
     interface EscuchadorElemento {

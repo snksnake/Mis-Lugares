@@ -1,4 +1,6 @@
-package com.example.mislugares;
+package com.example.mislugares.entidades;
+
+import com.example.mislugares.TipoLugar;
 
 public class Lugar {
     private String nombre;
