@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.ResultCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -152,7 +151,7 @@ public class LoginActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
-            if (resultCode == ResultCodes.OK) {
+            if (resultCode == RESULT_OK) {
                 login();
                 finish();
             } else {
@@ -160,10 +159,10 @@ public class LoginActivity extends Activity {
                 if (response == null) {
                     Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
                     return;
-                } else if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+                } else if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
                     Toast.makeText(this, "No estas conectado", Toast.LENGTH_LONG).show();
                     return;
-                } else if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+                } else if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                     Toast.makeText(this, "Error desconocido", Toast.LENGTH_LONG).show();
                     return;
                 }

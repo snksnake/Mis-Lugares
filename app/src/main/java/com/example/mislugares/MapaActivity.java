@@ -56,10 +56,10 @@ public class MapaActivity extends FragmentActivity
                 Bitmap iGrande = iconoDrawable.getBitmap();
                 Bitmap icono = Bitmap.createScaledBitmap(iGrande,
                         iGrande.getWidth() / 7, iGrande.getHeight() / 7, false);
-                mapa.addMarker(new MarkerOptions()
+                /*mapa.addMarker(new MarkerOptions()
                         .position(new LatLng(p.getLatitud(), p.getLongitud()))
                         .title(lugar.getNombre()).snippet(lugar.getDireccion())
-                        .icon(BitmapDescriptorFactory.fromBitmap(icono)));
+                        .icon(BitmapDescriptorFactory.fromBitmap(icono)));*/
             }
         }
         mapa.setOnInfoWindowClickListener(this);
