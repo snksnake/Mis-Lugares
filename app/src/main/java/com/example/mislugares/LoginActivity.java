@@ -108,10 +108,15 @@ public class LoginActivity extends Activity {
 
                 startActivity(intent);
             } else {
-                startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setLogo(R.mipmap.ic_launcher).setTheme(R.style.FirebaseUITema).setAvailableProviders(Arrays.asList(
-                        new AuthUI.IdpConfig.Builder(EmailAuthProvider.PROVIDER_ID).build(),
-                        new AuthUI.IdpConfig.Builder(PhoneAuthProvider.PROVIDER_ID).build(),
-                        new AuthUI.IdpConfig.Builder(GoogleAuthProvider.PROVIDER_ID).build())).setIsSmartLockEnabled(false).build(), RC_SIGN_IN);
+                startActivityForResult(AuthUI.getInstance()
+                        .createSignInIntentBuilder()
+                        .setLogo(R.mipmap.ic_launcher)
+                        .setTheme(R.style.FirebaseUITema)
+                        .setAvailableProviders(Arrays.asList(
+                                new AuthUI.IdpConfig.EmailBuilder().build(),
+                                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                                new AuthUI.IdpConfig.GoogleBuilder().build()))
+                        .setIsSmartLockEnabled(false).build(), RC_SIGN_IN);
             }
         } catch (Exception ex) {
             Log.d("Error", ex.getMessage());
@@ -213,14 +218,15 @@ public class LoginActivity extends Activity {
         dialogo.show();
         mAuth.signInAnonymously()
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override public void onComplete(@NonNull Task<AuthResult> task){
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             verificaSiUsuarioValidado();
                         } else {
                             dialogo.dismiss();
                             Log.w("MisLugares", "Error en signInAnonymously",
                                     task.getException());
-                            mensaje( "ERROR al intentarentrar de forma anónima");
+                            mensaje("ERROR al intentarentrar de forma anónima");
                         }
                     }
                 });
